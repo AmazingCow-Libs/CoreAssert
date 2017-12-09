@@ -18,7 +18,7 @@ NS_COREASSERT_BEGIN
 
     #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)     \
         do {                                                             \
-            if(!_cond_) {                                                \
+            if(!(_cond_)) {                                              \
                 throw _exception_(                                       \
                     CoreAssert::Private::_core_assert_join_args(         \
                         _fmt_,                                           \
