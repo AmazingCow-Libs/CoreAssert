@@ -1,5 +1,5 @@
 // Header
-#include "CoreAssert/include/private/PrivateHelpers.h"
+#include "../../include/private/PrivateHelpers.h"
 
 // Usings
 USING_NS_COREASSERT;

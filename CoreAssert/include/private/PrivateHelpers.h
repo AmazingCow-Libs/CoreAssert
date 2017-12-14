@@ -4,7 +4,7 @@
 #include <cstdarg>
 #include <string>
 // CoreAssert
-#include "../CoreAssert_Utils.h"
+#include "lib/CoreAssert/CoreAssert/include/CoreAssert_Utils.h"
 
 NS_COREASSERT_BEGIN
 
