@@ -3,7 +3,7 @@
 // CoreAssert
 #include "CoreAssert_Utils.h"
 // CoreAssert - Private
-#include "lib/CoreAssert/CoreAssert/include/private/PrivateHelpers.h"
+#include "../include/private/PrivateHelpers.h"
 
 
 NS_COREASSERT_BEGIN
