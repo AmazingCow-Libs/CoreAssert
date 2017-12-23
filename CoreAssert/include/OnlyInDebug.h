@@ -19,8 +19,8 @@
 //    is built in Debug mode.                                                 //
 //                                                                            //
 //    This facilitates and let very clean, that we don't want that code       //
-//    to be executed every time, but yet want it in Debug builds (usually      //
-//    it's error checking and that kind of things).                           //
+//    to be executed every time, but yet want it in Debug builds              //
+//    (usually it's error checking and that kind of things).                  //
 //                                                                            //
 //    Actually this functionality can be achieved writing a lot of:           //
 //      #if (DEBUG)                                                           //
@@ -43,7 +43,13 @@
 //------------------------------------------------------------------------------
 // Debug Mode.
 #if (COREASSERT_CONFIG_MODE == COREASSERT_CONFIG_MODE_DEBUG)
-    // Notice that we're executing the code inside the do {} while.
+
+    ///-------------------------------------------------------------------------
+    /// @brief
+    ///   Let us execute arbritary pieces of code only when the CoreAssert
+    ///   is built in DEBUG mode.
+    /// @param code
+    ///   Any piece of code ;D
     #define COREASSERT_ONLY_IN_DEBUG(_code_) do { _code_ } while(0);
 
 //------------------------------------------------------------------------------

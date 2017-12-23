@@ -58,8 +58,30 @@ NS_COREASSERT_BEGIN
 //   This is the most straightforward case.
 #if (COREASSERT_CONFIG_ENABLE_EXCEPTIONS)
 
-    //--------------------------------------------------------------------------
-    // Throw If
+    ///-------------------------------------------------------------------------
+    /// @brief
+    ///   Throws a exception if the condition is met.
+    /// @param cond
+    ///   The condition that will be tested. If it evaluates to true
+    ///   a exception will be throw, otherwise just ignored.
+    /// @param exception
+    ///   The type of exception that will be thrown.
+    /// @param fmt
+    ///   The C-style string message that will be used to
+    ///   construct the exception. It can use any format specifiers
+    ///   that printf(3) would use as well.
+    /// @param ...
+    ///   Variadic arguments that will be used as argument to the format msg.
+    /// @note
+    ///   This macro replacement is controlled by
+    ///   COREASSERT_CONFIG_ENABLE_EXCEPTIONS definition found in the Config.h
+    ///   file, meaning that if it's disable, the code will not generate an
+    ///   exception but instead a ASSERT or VERIFY.
+    /// @see
+    ///   COREASSERT_CONFIG_ENABLE_EXCEPTIONS
+    ///   COREASSERT_THROW_IF_NOT
+    ///   COREASSERT_VERIFY
+    ///   COREASSERT_ASSERT
     #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...)  \
         do {                                                      \
             if((_cond_)) {                                        \
@@ -72,8 +94,10 @@ NS_COREASSERT_BEGIN
             }                                                     \
         } while(0);
 
-    //--------------------------------------------------------------------------
-    // Throw If Not
+    ///-------------------------------------------------------------------------
+    /// @brief
+    ///   Same as COREASSERT_THROW_IF, but only generate exceptions when
+    ///   condition isn't met.
     #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
         COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
 

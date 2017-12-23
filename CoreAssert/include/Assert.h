@@ -38,7 +38,19 @@ NS_COREASSERT_BEGIN
 //------------------------------------------------------------------------------
 // Assertions are enabled.
 #if (COREASSERT_CONFIG_ENABLE_ASSERTS)
-
+    ///-------------------------------------------------------------------------
+    /// @brief
+    ///   Provides an runtime assertion about the condition.
+    /// @param cond
+    ///   The condition that will be tested - like (pFile != nullptr),
+    ///   if the condition fails, the assertion will be triggered.
+    /// @param msg
+    ///   A C-style string message - It can contains the same format specifiers
+    ///   as the printf(3) would accept.
+    /// @param ...
+    ///   Variadic arguments that will be used as argument to the format msg.
+    /// @see
+    ///   COREASSERT_VERIFY.
     #define COREASSERT_ASSERT(_cond_, _msg_, ...)        \
         ((_cond_))                                       \
          ? (void) 0 /* No-Op */                          \

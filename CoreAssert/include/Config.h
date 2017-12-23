@@ -26,11 +26,12 @@
 #define COREASSERT_CONFIG_MODE_DEBUG   1
 #define COREASSERT_CONFIG_MODE_RELEASE 0
 
-//------------------------------------------------------------------------------
-// Change this to alter how CoreAssert is built.
-// By default CoreAssert behaves like:
-//    DEBUG   -> ASSERT enabled,  VERIFY enabled
-//    RELEASE -> ASSERT disabled, VERIFY enabled
+///-----------------------------------------------------------------------------
+/// @brief
+///   Change this to alter how CoreAssert is built.
+///   By default CoreAssert behaves like:
+///      DEBUG   -> ASSERT enabled,  VERIFY enabled
+///      RELEASE -> ASSERT disabled, VERIFY enabled
 #define COREASSERT_CONFIG_MODE COREASSERT_CONFIG_MODE_DEBUG
 
 
@@ -48,24 +49,26 @@
 //----------------------------------------------------------------------------//
 // Exceptions Configs                                                         //
 //----------------------------------------------------------------------------//
-//------------------------------------------------------------------------------
-// This changes how exceptions that are thrown with the CoreAssert macros are
-// handled.
-//
-// When a exception is thrown by the COREASSERT_THROW_IF(_NOT) macros, the
-// options bellow changes what's really visible by the compiler when it's
-// producing the code.
-//
-// By doing this way we can still make code that throws exceptions but let
-// the clients decide how to use them. For example, if a piece of code
-// can't handle exceptions at all, it can disable the exceptions by setting
-// COREASSERT_CONFIG_ENABLE_EXCEPTIONS to 0 and the compiler will
-// emit the code for ASSERT of a VERIFY instead.
-//
-// Notice the implications of this model, when the user set to not use
-// exceptions, set the replacement of ASSERTs and make the build for RELEASE.
-// ** In practice the compiler will not emit any error at all. **
-// So use this wisely.
+///-----------------------------------------------------------------------------
+/// @brief
+///   This changes how exceptions that are thrown with the CoreAssert macros
+///   are handled.
+///
+///   When a exception is thrown by the COREASSERT_THROW_IF(_NOT) macros, the
+///   options bellow changes what's really visible by the compiler when it's
+///   producing the code.
+///
+///   By doing this way we can still make code that throws exceptions but let
+///   the clients decide how to use them. For example, if a piece of code
+///   can't handle exceptions at all, it can disable the exceptions by setting
+///   COREASSERT_CONFIG_ENABLE_EXCEPTIONS to 0 and the compiler will
+///   emit the code for ASSERT of a VERIFY instead.
+///
+/// @note
+///   Notice the implications of this model, when the user set to not use
+///   exceptions, set the replacement of ASSERTs and make the build for RELEASE.
+///   ** In practice the compiler will not emit any error at all. **
+///   So use this wisely.
 #define COREASSERT_CONFIG_ENABLE_EXCEPTIONS         1
 #define COREASSERT_CONFIG_ASSERT_INSTEAD_EXCEPTIONS 0
 #define COREASSERT_CONFIG_VERIFY_INSTEAD_EXCEPTIONS 0
