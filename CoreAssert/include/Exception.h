@@ -16,18 +16,24 @@ NS_COREASSERT_BEGIN
 //   This is the most straightforward case.
 #if (COREASSERT_CONFIG_ENABLE_EXCEPTIONS)
 
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)     \
-        do {                                                             \
-            if(!(_cond_)) {                                              \
-                throw _exception_(                                       \
-                    CoreAssert::Private::_core_assert_join_args(         \
-                        _fmt_,                                           \
-                        ##__VA_ARGS__                                    \
-                    )                                                    \
-                );                                                       \
-            }                                                            \
+    //--------------------------------------------------------------------------
+    // Throw If
+    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...)  \
+        do {                                                      \
+            if((_cond_)) {                                        \
+                throw _exception_(                                \
+                    CoreAssert::Private::_core_assert_join_args(  \
+                        _fmt_,                                    \
+                        ##__VA_ARGS__                             \
+                    )                                             \
+                );                                                \
+            }                                                     \
         } while(0);
 
+    //--------------------------------------------------------------------------
+    // Throw If Not
+    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
+        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
 
 //------------------------------------------------------------------------------
 // Exceptions ARE NOT enabled.
@@ -35,8 +41,15 @@ NS_COREASSERT_BEGIN
 //   So build a COREASSERT that provides enough info about what's going on.
 #elif (COREASSERT_CONFIG_ASSERT_INSTEAD_EXCEPTIONS)
 
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...) \
-        COREASSERT_ASSERT(_cond_, _fmt_, ##__VA_ARGS__);
+    //--------------------------------------------------------------------------
+    // Throw If
+    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
+        COREASSERT_ASSERT(!(_cond_), (_fmt_), ##__VA_ARGS__);
+
+    //--------------------------------------------------------------------------
+    // Throw If Not
+    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
+        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
 
 
 //------------------------------------------------------------------------------
@@ -45,16 +58,30 @@ NS_COREASSERT_BEGIN
 //   So build a COREASSERT that provides enough info about what's going on.
 #elif (COREASSERT_CONFIG_VERIFY_INSTEAD_EXCEPTIONS)
 
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...) \
-            COREASSERT_VERIFY(_cond_, _fmt_, ##__VA_ARGS__);
+    //--------------------------------------------------------------------------
+    // Throw If
+    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
+            COREASSERT_VERIFY(!(_cond_), (_fmt_), ##__VA_ARGS__);
+
+    //--------------------------------------------------------------------------
+    // Throw If Not
+    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
+        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
 
 
 //------------------------------------------------------------------------------
 // Exceptions ARE NOT enabled.
 //   And CoreAssert is configured to not replace them with anything...
 #else
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...) \
+    //--------------------------------------------------------------------------
+    // Throw If
+    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
         do { } while(0);
+
+    //--------------------------------------------------------------------------
+    // Throw If Not
+    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
+        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
 
 #endif // COREASSERT_CONFIG_ENABLE_EXCEPTIONS
 
