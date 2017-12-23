@@ -1,0 +1,12 @@
+Title:
+    CoreAssert
+Description:
+    Utilities to improve assert(3) and make defensive programming easier.
+URL:
+    Github, https://github.com/AmazingCow-Libs/CoreAssert
+Owner:
+    AmazingCow Labs
+Section:
+    Libs
+
+
