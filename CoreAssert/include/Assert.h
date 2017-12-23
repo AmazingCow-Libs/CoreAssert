@@ -1,3 +1,31 @@
+//~---------------------------------------------------------------------------//
+//                     _______  _______  _______  _     _                     //
+//                    |   _   ||       ||       || | _ | |                    //
+//                    |  |_|  ||       ||   _   || || || |                    //
+//                    |       ||       ||  | |  ||       |                    //
+//                    |       ||      _||  |_|  ||       |                    //
+//                    |   _   ||     |_ |       ||   _   |                    //
+//                    |__| |__||_______||_______||__| |__|                    //
+//                             www.amazingcow.com                             //
+//  File      : Assert.h                                                      //
+//  Project   : CoreAssert                                                    //
+//  Date      : Dec 14, 2017                                                  //
+//  License   : GPLv3                                                         //
+//  Author    : n2omatt <n2omatt@amazingcow.com>                              //
+//  Copyright : AmazingCow - 2017                                             //
+//                                                                            //
+//  Description :                                                             //
+//    Provides a better assetion model than the standard assert macro         //
+//    by the libc.                                                            //
+//                                                                            //
+//    The Asserts will have information of:                                   //
+//      1 - The condition (the actual text) that failed.                      //
+//      2 - The file path.                                                    //
+//      3 - The line number.                                                  //
+//      4 - The function the ASSERT is.                                       //
+//      5 - A user given message with variadic arguments like printf(3)       //
+//---------------------------------------------------------------------------~//
+
 #pragma once
 
 // CoreAssert

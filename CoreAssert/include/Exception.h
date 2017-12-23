@@ -1,3 +1,45 @@
+//~---------------------------------------------------------------------------//
+//                     _______  _______  _______  _     _                     //
+//                    |   _   ||       ||       || | _ | |                    //
+//                    |  |_|  ||       ||   _   || || || |                    //
+//                    |       ||       ||  | |  ||       |                    //
+//                    |       ||      _||  |_|  ||       |                    //
+//                    |   _   ||     |_ |       ||   _   |                    //
+//                    |__| |__||_______||_______||__| |__|                    //
+//                             www.amazingcow.com                             //
+//  File      : Exception.h                                                   //
+//  Project   : CoreAssert                                                    //
+//  Date      : Dec 14, 2017                                                  //
+//  License   : GPLv3                                                         //
+//  Author    : n2omatt <n2omatt@amazingcow.com>                              //
+//  Copyright : AmazingCow - 2017                                             //
+//                                                                            //
+//  Description :                                                             //
+//    Those macros provide ways to you conditionally control if the code      //
+//    should throw an exception or instead be an ASSERT or VERIFY.            //
+//                                                                            //
+//    This way we can still write code that throw exceptions but let the      //
+//    clients disable them and instead opt out.                               //
+//                                                                            //
+//    The effect is achieved in two steps:                                    //
+//      1 - You write the code normally as it would throw the exception, but  //
+//          instead of use the "naked" throw mechanism you use the following  //
+//          macros instead.                                                   //
+//      2 - The client of the code, set in Config.h what is the replacement   //
+//          of the following macros if he wants to not have exceptions        //
+//          at all.                                                           //
+//                                                                            //
+//    Notice that this have two implications. With exceptions you allways can //
+//    catch it - and possible handle - but if you disable the exceptions you  //
+//    won't have this possibility, so the program will abort.                 //
+//    Moreover if you set the replacement for COREASSERT_ASSERT and disable   //
+//    assertions in RELEASE builds, you will HAVE NOTHING in the exceptional  //
+//    situation.                                                              //
+//                                                                            //
+//    So use this with care....                                               //
+//                                                                            //
+//---------------------------------------------------------------------------~//
+
 #pragma once
 
 // CoreAssert
