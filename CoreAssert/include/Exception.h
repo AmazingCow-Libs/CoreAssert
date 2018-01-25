@@ -110,7 +110,16 @@ NS_COREASSERT_BEGIN
     //--------------------------------------------------------------------------
     // Throw If
     #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
-        COREASSERT_ASSERT(!(_cond_), (_fmt_), ##__VA_ARGS__);
+        COREASSERT_ASSERT(                                       \
+            !(_cond_),                                           \
+            /* This will print the exception name */             \
+            CoreAssert::Private::_core_assert_join_args(         \
+                "(%s): %s",                                      \
+                #_exception_,                                    \
+                _fmt_                                            \
+            ).c_str(),                                           \
+            ##__VA_ARGS__                                        \
+        );
 
     //--------------------------------------------------------------------------
     // Throw If Not
@@ -126,8 +135,17 @@ NS_COREASSERT_BEGIN
 
     //--------------------------------------------------------------------------
     // Throw If
-    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
-            COREASSERT_VERIFY(!(_cond_), (_fmt_), ##__VA_ARGS__);
+    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...)     \
+            COREASSERT_VERIFY(                                       \
+                !(_cond_),                                           \
+                /* This will print the exception name */             \
+                CoreAssert::Private::_core_assert_join_args(         \
+                    "(%s): %s",                                      \
+                    #_exception_,                                    \
+                    _fmt_                                            \
+                ).c_str(),                                           \
+                ##__VA_ARGS__                                        \
+        );
 
     //--------------------------------------------------------------------------
     // Throw If Not
