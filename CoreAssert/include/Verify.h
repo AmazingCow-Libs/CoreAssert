@@ -34,7 +34,7 @@ NS_COREASSERT_BEGIN
 /// @brief
 ///   Provides an runtime verification about the condition.
 ///   This works **exactly** like COREASSERT_ASSERT but instead isn't
-//    stripped out in RELEASE builds.
+///   stripped out in RELEASE builds.
 /// @param cond
 ///   The condition that will be tested - like (pFile != nullptr),
 ///   if the condition fails, the assertion will be triggered.
