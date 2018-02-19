@@ -24,6 +24,7 @@
 
 // std
 #include <exception>
+#include <stdexcept>
 #include <string>
 // CoreAssert
 #include "Exception.h"
@@ -55,6 +56,7 @@ public:
 
 }; // class NotImplementedException
 }  // namespace CoreAssert
+
 
 //----------------------------------------------------------------------------//
 // MACROS                                                                     //
