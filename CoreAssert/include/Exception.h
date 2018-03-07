@@ -77,6 +77,14 @@ NS_COREASSERT_BEGIN
     ///   COREASSERT_CONFIG_ENABLE_EXCEPTIONS definition found in the Config.h
     ///   file, meaning that if it's disable, the code will not generate an
     ///   exception but instead a ASSERT or VERIFY.
+    /// @example
+    /// <code>
+    ///     COREASSERT_THROW_IF(
+    ///         vec.empty(),
+    ///         std::length_error(),
+    ///         "Vector can't be empty"
+    ///     );
+    /// </code>
     /// @see
     ///   COREASSERT_CONFIG_ENABLE_EXCEPTIONS
     ///   COREASSERT_THROW_IF_NOT
