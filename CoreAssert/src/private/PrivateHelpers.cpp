@@ -86,7 +86,6 @@ void Private::_core_assert_print_args(
   message    : %s \n",
             file, line, func, expr, buffer.c_str());
 
+    fflush(stderr);
     abort();
 }
-
-
