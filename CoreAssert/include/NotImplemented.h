@@ -20,7 +20,14 @@
 //    The idea is to use it in the same way that C# does.                     //
 //---------------------------------------------------------------------------~//
 
+
+
 #pragma once
+
+// CoreAssert
+#include "CoreAssert_Utils.h"
+
+#if (COREASSERT_IS_CPP)
 
 // std
 #include <exception>
@@ -68,3 +75,5 @@ public:
         _fmt_,                                 \
         ##__VA_ARGS__                          \
     )
+
+#endif // (COREASSERT_IS_CPP)

@@ -20,6 +20,17 @@
 
 #pragma once
 
+
+//----------------------------------------------------------------------------//
+// Check if is C++ mode.                                                      //
+//----------------------------------------------------------------------------//
+#if (__cplusplus)
+    #define COREASSERT_IS_CPP 1
+#else
+    #define COREASSERT_IS_CPP 0
+#endif
+
+
 //----------------------------------------------------------------------------//
 // Namespaces                                                                 //
 //----------------------------------------------------------------------------//
@@ -27,9 +38,15 @@
 // We use MACROS so is easier to change if needed.
 // Is (in our opinion) more explicit.
 // And finally the editors will not reformat the code.
-#define NS_COREASSERT_BEGIN namespace CoreAssert {
-#define NS_COREASSERT_END   }
-#define USING_NS_COREASSERT using namespace CoreAssert
+#if (COREASSERT_IS_CPP)
+    #define NS_COREASSERT_BEGIN namespace CoreAssert {
+    #define NS_COREASSERT_END   }
+    #define USING_NS_COREASSERT using namespace CoreAssert
+#else
+    #define NS_COREASSERT_BEGIN
+    #define NS_COREASSERT_END
+    #define USING_NS_COREASSERT
+#endif
 
 
 //----------------------------------------------------------------------------//

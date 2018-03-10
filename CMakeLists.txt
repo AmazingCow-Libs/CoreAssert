@@ -28,7 +28,7 @@ project(CoreAssert)
 ##------------------------------------------------------------------------------
 ## Sources.
 add_library(CoreAssert
-    CoreAssert/src/private/PrivateHelpers.cpp
+    CoreAssert/src/private/PrivateHelpers.c
 )
 
 

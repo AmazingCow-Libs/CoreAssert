@@ -44,6 +44,9 @@
 
 // CoreAssert
 #include "CoreAssert_Utils.h"
+
+#if (COREASSERT_IS_CPP)
+
 #include "Config.h"
 #include "Assert.h"
 #include "Verify.h"
@@ -179,3 +182,5 @@ NS_COREASSERT_BEGIN
 
 
 NS_COREASSERT_END
+
+#endif // (COREASSERT_IS_CPP)
