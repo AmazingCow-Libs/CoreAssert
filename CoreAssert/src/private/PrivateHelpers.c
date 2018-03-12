@@ -27,41 +27,45 @@
 #include <stdarg.h>
 
 //----------------------------------------------------------------------------//
+// Constants                                                                  //
+//----------------------------------------------------------------------------//
+#define BUFFER_SIZE 1024
+static char kBuffer[BUFFER_SIZE] = {};
+
+
+
+//----------------------------------------------------------------------------//
 // Helper Functions                                                           //
 //----------------------------------------------------------------------------//
 static char*
-vformat(const char *fmt, va_list list)
+vformat(char *buffer, size_t bufferSize, const char *fmt, va_list list)
 {
-    const size_t kBufferSize = 1024;
-    char* buffer = (char*)malloc(kBufferSize);
-    memset(buffer, kBufferSize, 0);
+    memset(buffer, bufferSize, 0);
 
     // Build the buffer with the variadic args list.
-    vsnprintf(buffer, kBufferSize, fmt, list);
+    vsnprintf(buffer, bufferSize, fmt, list);
 
     return buffer;
 }
 
 
 //----------------------------------------------------------------------------//
-// Functions                                                                  //
+// Public Functions                                                           //
 //----------------------------------------------------------------------------//
-//------------------------------------------------------------------------------
-static char *
-_core_assert_join_args(const char *msg, ...)
+char *
+_core_assert_private_join_args(const char *fmt, ...)
 {
     va_list args;
-    va_start(args, msg);
+    va_start(args, fmt);
 
     // Forward the '...' to vformat
-    char *buffer = vformat(msg, args);
+    char *buffer = vformat(kBuffer, BUFFER_SIZE , fmt, args);
 
     va_end(args);
 
     return buffer;
 }
 
-//------------------------------------------------------------------------------
 void _core_assert_private_print_args(
     const    char *expr,
     const    char *file,
@@ -74,7 +78,7 @@ void _core_assert_private_print_args(
     va_start(args, msg);
 
     // Forward the '...' to vformat
-    char *buffer = vformat(msg, args);
+    char *buffer = vformat(kBuffer, BUFFER_SIZE , msg, args);
 
     va_end(args);
 
@@ -89,7 +93,5 @@ void _core_assert_private_print_args(
             file, line, func, expr, buffer);
 
     fflush(stderr);
-    free(buffer);
-
     abort();
 }

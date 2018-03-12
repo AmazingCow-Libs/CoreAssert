@@ -47,6 +47,7 @@
 
 #if (COREASSERT_IS_CPP)
 
+// CoreAssert
 #include "Config.h"
 #include "Assert.h"
 #include "Verify.h"
@@ -97,20 +98,14 @@ NS_COREASSERT_BEGIN
         do {                                                      \
             if((_cond_)) {                                        \
                 throw _exception_(                                \
-                    CoreAssert::Private::_core_assert_join_args(  \
+                    _core_assert_private_join_args(               \
                         _fmt_,                                    \
                         ##__VA_ARGS__                             \
                     )                                             \
                 );                                                \
             }                                                     \
-        } while(0);
+        } while(0)
 
-    ///-------------------------------------------------------------------------
-    /// @brief
-    ///   Same as COREASSERT_THROW_IF, but only generate exceptions when
-    ///   condition isn't met.
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
-        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
 
 //------------------------------------------------------------------------------
 // Exceptions ARE NOT enabled.
@@ -118,25 +113,17 @@ NS_COREASSERT_BEGIN
 //   So build a COREASSERT that provides enough info about what's going on.
 #elif (COREASSERT_CONFIG_ASSERT_INSTEAD_EXCEPTIONS)
 
-    //--------------------------------------------------------------------------
-    // Throw If
     #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
         COREASSERT_ASSERT(                                       \
             !(_cond_),                                           \
             /* This will print the exception name */             \
-            CoreAssert::Private::_core_assert_join_args(         \
+            _core_assert_private_join_args(                      \
                 "(%s): %s",                                      \
                 #_exception_,                                    \
                 _fmt_                                            \
             ).c_str(),                                           \
             ##__VA_ARGS__                                        \
-        );
-
-    //--------------------------------------------------------------------------
-    // Throw If Not
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
-        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
-
+        )
 
 //------------------------------------------------------------------------------
 // Exceptions ARE NOT enabled.
@@ -144,41 +131,38 @@ NS_COREASSERT_BEGIN
 //   So build a COREASSERT that provides enough info about what's going on.
 #elif (COREASSERT_CONFIG_VERIFY_INSTEAD_EXCEPTIONS)
 
-    //--------------------------------------------------------------------------
-    // Throw If
-    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...)     \
-            COREASSERT_VERIFY(                                       \
-                !(_cond_),                                           \
-                /* This will print the exception name */             \
-                CoreAssert::Private::_core_assert_join_args(         \
-                    "(%s): %s",                                      \
-                    #_exception_,                                    \
-                    _fmt_                                            \
-                ).c_str(),                                           \
-                ##__VA_ARGS__                                        \
-        );
-
-    //--------------------------------------------------------------------------
-    // Throw If Not
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
-        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
+    #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
+        COREASSERT_VERIFY(                                       \
+            !(_cond_),                                           \
+            /* This will print the exception name */             \
+            _core_assert_private_join_args(                      \
+                "(%s): %s",                                      \
+                #_exception_,                                    \
+                _fmt_                                            \
+            ).c_str(),                                           \
+            ##__VA_ARGS__                                        \
+        )
 
 
 //------------------------------------------------------------------------------
 // Exceptions ARE NOT enabled.
 //   And CoreAssert is configured to not replace them with anything...
 #else
-    //--------------------------------------------------------------------------
-    // Throw If
     #define COREASSERT_THROW_IF(_cond_, _exception_, _fmt_, ...) \
-        do { } while(0);
-
-    //--------------------------------------------------------------------------
-    // Throw If Not
-    #define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
-        COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__);
+        do { } while(0)
 
 #endif // COREASSERT_CONFIG_ENABLE_EXCEPTIONS
+
+
+//----------------------------------------------------------------------------//
+// Throw If Not                                                               //
+//----------------------------------------------------------------------------//
+///-----------------------------------------------------------------------------
+/// @brief
+///   Same as COREASSERT_THROW_IF, but only generate exceptions when
+///   condition isn't met.
+#define COREASSERT_THROW_IF_NOT(_cond_, _exception_, _fmt_, ...)  \
+    COREASSERT_THROW_IF(!(_cond_), (_exception_), (_fmt_), ##__VA_ARGS__)
 
 
 NS_COREASSERT_END

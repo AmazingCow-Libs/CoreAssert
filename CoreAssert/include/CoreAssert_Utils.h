@@ -31,6 +31,12 @@
 #endif
 
 
+#if (COREASSERT_IS_CPP)
+    #define COREASSERT_EXTERN_C extern "C"
+#else
+    #define COREASSERT_EXTERN_C
+#endif
+
 //----------------------------------------------------------------------------//
 // Namespaces                                                                 //
 //----------------------------------------------------------------------------//

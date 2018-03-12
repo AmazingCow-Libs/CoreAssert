@@ -26,11 +26,13 @@
 // CoreAssert
 #include "../../include/CoreAssert_Utils.h"
 
-
 //----------------------------------------------------------------------------//
 // Functions                                                                  //
 //----------------------------------------------------------------------------//
-void
+COREASSERT_EXTERN_C char *
+_core_assert_private_join_args(const char *fmt, ...);
+
+COREASSERT_EXTERN_C void
 _core_assert_private_print_args(
     const    char   *expr,
     const    char   *file,
@@ -38,3 +40,4 @@ _core_assert_private_print_args(
     const    char   *func,
     const    char   *msg,
     ...);
+

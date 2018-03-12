@@ -45,16 +45,16 @@ NS_COREASSERT_BEGIN
 ///   Variadic arguments that will be used as argument to the format msg.
 /// @see
 ///   COREASSERT_ASSERT.
-#define COREASSERT_VERIFY(_cond_, _msg_, ...)        \
-    ((_cond_))                                       \
-     ? (void) 0 /* No-Op */                          \
-     : CoreAssert::Private::_core_assert_print_args( \
-            #_cond_,                                 \
-            __FILE__,                                \
-            __LINE__,                                \
-            __func__,                                \
-            (_msg_),                                 \
-            ##__VA_ARGS__                            \
+#define COREASSERT_VERIFY(_cond_, _msg_, ...) \
+    ((_cond_))                                \
+     ? (void) 0 /* No-Op */                   \
+     : _core_assert_private_print_args(       \
+            #_cond_,                          \
+            __FILE__,                         \
+            __LINE__,                         \
+            __func__,                         \
+            (_msg_),                          \
+            ##__VA_ARGS__                     \
        )
 
 NS_COREASSERT_END
