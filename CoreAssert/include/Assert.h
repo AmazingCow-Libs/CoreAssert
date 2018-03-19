@@ -71,4 +71,12 @@ NS_COREASSERT_BEGIN
 
 #endif // (COREASSERT_CONFIG_ENABLE_ASSERTS)
 
+
+#define COREASSERT_ASSERT_NOT_NULL(_var_)                            \
+    COREASSERT_ASSERT(                                               \
+        _var_ != nullptr,                                            \
+         "Var: " _COREASSERT_STRINGIZE_HELPER(_var_) "can't be null" \
+    )
+
+
 NS_COREASSERT_END
