@@ -27,6 +27,13 @@
 #include "../../include/CoreAssert_Utils.h"
 
 //----------------------------------------------------------------------------//
+// Macros                                                                     //
+//----------------------------------------------------------------------------//
+#define _COREASSERT_STRINGIZE_HELPER(A) #A
+#define COREASSERT_STRINGIZE(A) _COREASSERT_STRINGIZE_HELPER(A)
+
+
+//----------------------------------------------------------------------------//
 // Functions                                                                  //
 //----------------------------------------------------------------------------//
 COREASSERT_EXTERN_C char *
@@ -40,4 +47,3 @@ _core_assert_private_print_args(
     const    char   *func,
     const    char   *msg,
     ...);
-
