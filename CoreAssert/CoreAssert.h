@@ -23,9 +23,9 @@
 //----------------------------------------------------------------------------//
 // Export Headers                                                             //
 //----------------------------------------------------------------------------//
-#include "include/Config.h"
 #include "include/Assert.h"
-#include "include/Verify.h"
+#include "include/Config.h"
 #include "include/Exception.h"
-#include "include/OnlyInDebug.h"
 #include "include/NotImplemented.h"
+#include "include/OnlyInDebug.h"
+#include "include/Verify.h"
