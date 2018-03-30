@@ -29,6 +29,7 @@
 #pragma once
 
 // CoreAssert
+#include "Config.h"
 #include "CoreAssert_Utils.h"
 // CoreAssert - Private
 #include "private/PrivateHelpers.h"
