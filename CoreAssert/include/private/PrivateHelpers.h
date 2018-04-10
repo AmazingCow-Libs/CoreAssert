@@ -36,7 +36,7 @@
 //----------------------------------------------------------------------------//
 // Functions                                                                  //
 //----------------------------------------------------------------------------//
-COREASSERT_EXTERN_C char *
+COREASSERT_EXTERN_C char*
 _core_assert_private_join_args(const char *fmt, ...);
 
 COREASSERT_EXTERN_C void
