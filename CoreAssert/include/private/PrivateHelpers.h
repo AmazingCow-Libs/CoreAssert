@@ -24,7 +24,7 @@
 #include <stdarg.h>
 #include <string.h>
 // CoreAssert
-#include "../../include/CoreAssert_Utils.h"
+#include "include/CoreAssert_Utils.h"
 
 //----------------------------------------------------------------------------//
 // Macros                                                                     //
