@@ -30,7 +30,7 @@
 // Constants                                                                  //
 //----------------------------------------------------------------------------//
 #define BUFFER_SIZE 1024
-static char kBuffer[BUFFER_SIZE] = {};
+static char kBuffer[BUFFER_SIZE] = {0};
 
 
 
