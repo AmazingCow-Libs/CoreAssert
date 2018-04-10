@@ -19,7 +19,7 @@
 //---------------------------------------------------------------------------~//
 
 // Header
-#include "../../include/private/PrivateHelpers.h"
+#include "include/private/PrivateHelpers.h"
 // std
 #include <stdio.h>
 #include <stdlib.h>
